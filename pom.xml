@@ -54,7 +54,7 @@
     <maven.compiler.release>21</maven.compiler.release>
     <!-- 经 netty-bom 管理全部 io.netty:* 构件（不止 netty-all）：zookeeper 等依赖单独声明的 netty-handler / netty-transport-native-epoll
          也对齐到同一版本，classpath 上不会混入旧版 Netty。留在 4.1 线；CI 的 netty-42 作业用 -Dnetty.version=4.2.x 另验 4.2（Boot 4 管理的线）。 -->
-    <netty.version>4.1.139.Final</netty.version>
+    <netty.version>4.1.140.Final</netty.version>
     <spring.version>7.0.10</spring.version>
     <junit-bom.version>6.1.3</junit-bom.version>
     <!-- Testcontainers 2.x 只 shade 了 jackson-databind/core，jackson-annotations 走 classpath：docker-java-api 3.7.1 要 ≥ 2.20 的 annotations，
@@ -64,10 +64,10 @@
     <jackson-bom.version>2.21.8</jackson-bom.version>
     <fastjson2.version>2.0.66</fastjson2.version>
     <slf4j.version>2.0.20</slf4j.version> <!-- 1.7.x 的 StaticLoggerBinder 机制和 logback-classic 1.5.x（基于 SLF4J 2.x ServiceLoader）不兼容，绑定了也不生效 -->
-    <zookeeper.version>3.9.6</zookeeper.version> <!-- 3.9.5 起修复 ZKTrustManager 反向 DNS 回退与 ZKConfig 配置值写入日志；steadyrpc-bom 里写死同一版本，两处一起改（BomConsistencyTest 核对） -->
+    <zookeeper.version>3.9.7</zookeeper.version> <!-- 3.9.5 起修复 ZKTrustManager 反向 DNS 回退与 ZKConfig 配置值写入日志；steadyrpc-bom 里写死同一版本，两处一起改（BomConsistencyTest 核对） -->
     <curator.version>5.9.0</curator.version> <!-- 5.2.0 的 curator-test 和 zookeeper 3.9.4 有二进制不兼容（IncompatibleClassChangeError），升到 5.8.0 修复 -->
     <protostuff.version>1.8.0</protostuff.version>
-    <nacos-client.version>2.5.4</nacos-client.version>
+    <nacos-client.version>2.5.5</nacos-client.version>
     <logback.version>1.6.6</logback.version> <!-- 与 Spring Boot 4.1.0 的 spring-boot-starter-logging 对齐：1.5.13 不认识 Boot 4 defaults.xml 里 conversionRule 的 class 属性，%clr 解析失败 -->
     <!-- log4j-api / log4j-to-slf4j 只经 Boot 的 spring-boot-starter-logging 进来（starter 里是 optional 的 Actuator，不传递给使用方）；
          Boot 4.1.0 带的 2.25.4 有 MapMessage JSON 编码公告，这里补丁级对齐到 2.25.5（Boot 4.1.1 起自身也是 2.25.5），不动 Boot 版本 -->
@@ -76,7 +76,7 @@
     <archunit.version>1.5.1</archunit.version>
     <awaitility.version>4.3.0</awaitility.version>
     <jqwik.version>1.10.2</jqwik.version>
-    <maven-enforcer-plugin.version>3.6.3</maven-enforcer-plugin.version>
+    <maven-enforcer-plugin.version>3.7.0</maven-enforcer-plugin.version>
     <testcontainers.version>2.0.5</testcontainers.version>
     <jacoco.version>0.8.16</jacoco.version>
     <!-- steadyrpc-bench-e2e：延迟直方图与口径卡解析（只用 SafeConstructor 加载成 Map，不反序列化到 Bean） -->
@@ -90,7 +90,7 @@
          protobuf-maven-plugin 按平台从 Maven Central 取（Windows 与 Linux 同一份配置，不需要 os-maven-plugin 扩展）。 -->
     <grpc.version>1.85.0</grpc.version>
     <protobuf.version>3.25.9</protobuf.version>
-    <protobuf-maven-plugin.version>5.1.11</protobuf-maven-plugin.version>
+    <protobuf-maven-plugin.version>5.1.12</protobuf-maven-plugin.version>
     <!-- 对比对象（steadyrpc-bench-compare-dubbo）：Dubbo 3.3 线当前稳定版（3.3.6，2025-10-17），all-in-one 的 org.apache.dubbo:dubbo。
          它声明依赖 netty-all 4.2.2.Final（未 shade）；本仓库在下面经 netty-bom 统一管理 Netty，Dubbo 模块也解析到 netty.version
          （dependency:tree -Dverbose 实证：4.2.2 omitted；3.3.6 的 remoting / triple 代码不引用 4.2 才有的 IoHandler 系 API，测试与压测在 4.1.136 上跑通，2.0.0 起为 4.1.139）。
