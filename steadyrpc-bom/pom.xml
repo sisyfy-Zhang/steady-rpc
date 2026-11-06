@@ -39,7 +39,7 @@
 
   <properties>
     <!-- 与根 pom 的 zookeeper.version 同值（本 pom 不继承根 pom，只能写死；BomConsistencyTest 核对） -->
-    <zookeeper.version>3.9.6</zookeeper.version>
+    <zookeeper.version>3.9.7</zookeeper.version>
   </properties>
 
   <dependencyManagement>
